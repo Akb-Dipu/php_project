@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRG GYM</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for slideshow */
+        .slideshow-container {
+            max-width: 500px;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            transition: opacity 1s ease;
+        }
+
+        .slide img {
+            width: 90%;
+            height:auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-title {
+            text-align: center;
+            color: #ff3103;
+            font-size: 2rem;
+            margin: 30px 0 10px;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.0s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+    </style>
+    <script>
+        // Load the stored notice from localStorage when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            const notice = localStorage.getItem('gymNotice') || 'No notices available.';
+            document.getElementById('notice').innerText = notice;
+
+            // Greeting the user by retrieving the name from localStorage
+            const user = JSON.parse(localStorage.getItem('nrgUser'));
+            if (user && user.name) {
+                document.getElementById('greeting').textContent = "Hello " + user.name + ", Welcome to NRG GYM!";
+            }
+
+            // Initialize slideshow
+            showSlides();
+        });
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            slides[slideIndex-1].classList.add("fade");
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="nrg-header">
+            <img src="images/logo.png" alt="NRG Gym Logo" class="logo">
+        </div>
+
+        <div class="navbar">
+            <a href="#admission"><button class="button">Admission</button></a>
+            <a href="#notice-board"><button class="button">Notice</button></a>
+            <a href="#schedule"><button class="button">Schedule</button></a>
+            <a href="admin.html"><button class="button">Admin</button></a>
+        </div>
+    </header>
+
+    <!-- Greeting -->
+    <div id="greeting" class="greeting"></div>
+
+    <!-- Admission Section -->
+    <section class="information" id="admission">
+        <div class="card">
+            <h2>Admission Details</h2>
+            <p><strong>Registration Fee:</strong> 1500 Taka</p>
+            <p><strong>Monthly Fee:</strong> 1000 Taka</p>
+            <p><strong>Treadmill Charge:</strong> 200 Taka</p>
+            <p><strong>Quarter Plan:</strong> 3000 Taka</p>
+            <p><strong>Half Yearly Plan:</strong> 4500 Taka</p>
+            <p><strong>Yearly Plan:</strong> 8000 Taka</p>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section class="information" id="notice-board">
+        <div class="card">
+            <h2>Notice Board</h2>
+            <div id="notice">No notices available.</div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="information" id="schedule">
+        <div class="card">
+            <h2>Time-Schedule</h2>
+            <p><strong>Friday:</strong> Off day</p>
+            <p><strong>Male Time:</strong> 6:30 am to 11:00 am & 4:00 pm to 10:30 pm</p>
+            <p><strong>Female Time:</strong> 11:00 am to 4:00 pm</p>
+        </div>
+    </section>
+
+    <!-- Image Slideshow Section -->
+    <h2 class="slideshow-title">Our Gym Facilities</h2>
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="images/img1.jpg" alt="Gym Facility 1">
+        </div>
+        <div class="slide">
+            <img src="images/img2.jpg" alt="Gym Facility 2">
+        </div>
+        <div class="slide">
+            <img src="images/img3.jpg" alt="Gym Facility 3">
+        </div>
+        <div class="slide">
+            <img src="images/img4.jpg" alt="Gym Facility 4">
+        </div>
+        <div class="slide">
+            <img src="images/img5.jpg" alt="Gym Facility 5">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h1>Contact Us</h1>
+            <p>Phone: 01666690912</p>
+            <p>Location: Khagan Bazar, Ashulia, SAVAR, Dhaka-1320</p>
+
+            <!-- Google Map -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.122161675125!2d90.3084818!3d23.8751692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c2119d2f49fd%3A0x200dbde0f043c2fc!2sKhagan%20Bazar!5e0!3m2!1sen!2sbd!4v1712921130800!5m2!1sen!2sbd" 
+                width="100%" 
+                height="300" 
+                style="border:0; margin-top: 20px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </footer>
+</body>
+</html>
